@@ -21,7 +21,7 @@ describe('test text svg manipulation', () => {
       expect(result).not.toBe(undefined);
       expect(result?.content.querySelectorAll('deckgo-drr').length).toEqual(2);
       expect(result?.content.outerHTML).toEqual(
-        `<aside><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Montserrat; font-weight: bold; font-size: 5.083333333333333rem; letter-spacing: 0px; color: rgb(21, 77, 84);">Presentation title</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 600; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">Your Name, Your Title</section></deckgo-drr></aside>`
+        `<aside><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Montserrat; font-weight: bold; font-size: 3.8125em; letter-spacing: 0px; color: rgb(21, 77, 84);">Presentation title</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 600; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">Your Name, Your Title</section></deckgo-drr></aside>`
       );
     });
   });
@@ -40,11 +40,11 @@ describe('test text svg manipulation', () => {
       expect(result).not.toBe(undefined);
       expect(result?.content.querySelectorAll('deckgo-drr').length).toEqual(6);
       expect(result?.content.outerHTML)
-        .toEqual(`<aside><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Montserrat; font-weight: bold; font-size: 3rem; letter-spacing: 0px; color: rgb(21, 77, 84);">About this talk</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">1. First point
-</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">2. Second point
-</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">3. Third point
-</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">4. Fourth point
-</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 2rem; letter-spacing: 0px; color: rgb(32, 35, 35);">5. Fifth point</section></deckgo-drr></aside>`);
+        .toEqual(`<aside><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Montserrat; font-weight: bold; font-size: 2.25em; letter-spacing: 0px; color: rgb(21, 77, 84);">About this talk</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">1. First point
+</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">2. Second point
+</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">3. Third point
+</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">4. Fourth point
+</section></deckgo-drr><deckgo-drr text="true" slot=""><section style="white-space: pre; font-family: Raleway; font-weight: 500; font-size: 1.5em; letter-spacing: 0px; color: rgb(32, 35, 35);">5. Fifth point</section></deckgo-drr></aside>`);
     });
   });
 });
