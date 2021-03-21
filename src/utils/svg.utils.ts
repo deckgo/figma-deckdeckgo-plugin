@@ -96,7 +96,7 @@ export const transformCanvas = ({index}: Frame): Promise<SvgToCanvas | undefined
       return;
     }
 
-    const {width, height} = svg.getBBox();
+    const {width, height} = svgSize(svg);
 
     const blob: Blob = new Blob([svg.outerHTML], {type: 'image/svg+xml;charset=utf-8'});
     const blobURL: string = URL.createObjectURL(blob);
@@ -123,3 +123,13 @@ export const transformCanvas = ({index}: Frame): Promise<SvgToCanvas | undefined
     image.src = blobURL;
   });
 };
+
+const svgSize = (svg: SVGGraphicsElement): {width: number, height: number} => {
+  const width: number = svg.hasAttribute('width') ? parseInt(svg.getAttribute('width') as string, 0) : 1920;
+  const height: number = svg.hasAttribute('height') ? parseInt(svg.getAttribute('height') as string, 0) : 1080;
+
+  return {
+    width,
+    height
+  }
+}
