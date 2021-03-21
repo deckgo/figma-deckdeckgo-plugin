@@ -1,3 +1,4 @@
+// TODO fetch(`https://app.deckdeckgo.com/assests/assets.json`) at build time
 const FONT_FAMILIES: string[] = [
   'Roboto',
   'Open Sans',
