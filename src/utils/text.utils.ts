@@ -1,7 +1,7 @@
 // SVG Properties and CSS: https://css-tricks.com/svg-properties-and-css/#shared-properties
 
 // TODO: Find a better algorithm to apply the ratio on font size
-const baseFontSize: number = 24;
+const baseFontSize: number = 32;
 
 export const applyStyle = ({section, text}: {section: HTMLElement; text: SVGTextElement}) => {
   section.style.whiteSpace = text.style.whiteSpace;
@@ -17,7 +17,7 @@ export const applyStyle = ({section, text}: {section: HTMLElement; text: SVGText
   section.style.fontWeight = text.getAttribute('font-weight') || '';
 
   const fontSize: number = parseInt(text.getAttribute('font-size') || '') / baseFontSize;
-  section.style.fontSize = !isNaN(fontSize) ? `${fontSize}rem` : '';
+  section.style.fontSize = !isNaN(fontSize) ? `${fontSize}em` : '';
 
   section.style.direction = text.getAttribute('direction') || '';
   section.style.letterSpacing = text.getAttribute('letter-spacing') || '';
