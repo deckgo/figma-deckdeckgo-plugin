@@ -27,6 +27,10 @@ This plugin, once installed in [Figma], can be used to export frames to [DeckDec
 - Go to the DeckDeckGo [editor](https://app.deckdeckgo.com)
 - Import the data to create a new deck
 
+<div align="center">
+    <img src="figma/screenshot-import.png" alt="Import in DeckDeckGo" height="320px">
+</div>
+
 ## Design Guidelines
 
 There are currently no check on the frame ratio. Nevertheless, we suggest the use of a 16/9 ratio.
