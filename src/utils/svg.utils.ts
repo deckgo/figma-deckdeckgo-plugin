@@ -24,8 +24,10 @@ export const appendContent = ({text, content, svg}: {text: SVGTextElement; conte
 const transformText = ({text, svg, tspan}: {text: SVGTextElement; svg: SVGGraphicsElement; tspan?: SVGTSpanElement}): HTMLElement => {
   const deckGoDrr: HTMLElement = initDeckGoDRR({text, svg, tspan});
 
+  const {width} = svgSize(svg);
+
   const section: HTMLElement = document.createElement('section');
-  applyStyle({section, text});
+  applyStyle({section, text, svgWidth: width});
   section.innerHTML = tspan ? tspan.innerHTML : text.innerHTML;
 
   deckGoDrr.append(section);
