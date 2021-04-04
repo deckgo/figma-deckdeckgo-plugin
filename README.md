@@ -5,7 +5,7 @@ Export [Figma] frames to [DeckDeckGo] slides.
 <div align="center">
     <img src="figma/cover.png" alt="Figma to DeckDeckGo" height="100%">
 
-    ![Plugin]
+    ![plugin](https://img.shields.io/website?label=Editor&url=https%3A%2F%2Fwww.figma.com%2Fcommunity%2Fplugin%2F950777256486678678%2FFigma-to-DeckDeckGo)
 </div>
 
 ## Table of contents
