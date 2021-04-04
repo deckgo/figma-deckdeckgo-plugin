@@ -1,9 +1,6 @@
 // SVG Properties and CSS: https://css-tricks.com/svg-properties-and-css/#shared-properties
 
-// TODO: Find a better algorithm to apply the ratio on font size
-const baseFontSize: number = 32;
-
-export const applyStyle = ({section, text}: {section: HTMLElement; text: SVGTextElement}) => {
+export const applyStyle = ({section, text, svgWidth}: {section: HTMLElement; text: SVGTextElement; svgWidth: number}) => {
   section.style.whiteSpace = text.style.whiteSpace;
 
   section.style.transform = transform(text.getAttribute('transform') || '');
@@ -16,7 +13,11 @@ export const applyStyle = ({section, text}: {section: HTMLElement; text: SVGText
   section.style.fontVariant = text.getAttribute('font-variant') || '';
   section.style.fontWeight = text.getAttribute('font-weight') || '';
 
-  const fontSize: number = parseInt(text.getAttribute('font-size') || '') / baseFontSize;
+  // 576px height = font-size 16px or 1em (relative to the font-size of its direct or nearest parent)
+  // See initFontSize in core
+  const ratioFontSize: number = svgWidth / 16 * 9 / 576;
+
+  const fontSize: number = parseInt(text.getAttribute('font-size') || '') / (16 * ratioFontSize);
   section.style.fontSize = !isNaN(fontSize) ? `${fontSize}em` : '';
 
   section.style.direction = text.getAttribute('direction') || '';
