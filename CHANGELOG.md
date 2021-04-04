@@ -1,3 +1,9 @@
+# 1.0.2 (2021-04-05)
+
+### Fix
+
+- manifest api is not the plugin version but, the Figma api version itself therefore 1.0.0
+
 # 1.0.1 (2021-03-23)
 
 ### Fix
