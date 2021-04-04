@@ -1,3 +1,14 @@
+# 1.0.3 (2021-04-05)
+
+### Features
+
+- font size follows DeckDeckGo core ratio
+
+### Fix
+
+- filter all frames only direct descendant from document
+- export race condition
+
 # 1.0.2 (2021-04-05)
 
 ### Fix

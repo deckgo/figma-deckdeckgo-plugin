@@ -1,6 +1,6 @@
 {
   "name": "figma-deckdeckgo-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Export Figma frames to DeckDeckGo",
   "main": "dist/plugin.js",
   "scripts": {
