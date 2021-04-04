@@ -12,8 +12,8 @@ export const renderFrames = async ({frames, extractText}: {frames: Frame[]; extr
     return;
   }
 
-  frames.forEach(({svg}: Frame) => {
-    renderSvg({container, svg});
+  frames.forEach(({svg}: Frame, index: number) => {
+    renderSvg({container, svg, index});
   });
 
   if (extractText) {
@@ -36,7 +36,7 @@ const renderCanvas = async ({container, canvas}: {container: HTMLDivElement; can
     return;
   }
 
-  const div: HTMLDivElement | null = container.querySelector(`div:nth-child(${canvas.index + 1})`);
+  const div: HTMLDivElement | null = container.querySelector(`div[frame="${canvas.index}"]`);
 
   div?.appendChild(canvas.canvas);
 };
@@ -54,13 +54,13 @@ const renderContent = async ({container, element}: {container: HTMLDivElement; e
     return;
   }
 
-  const div: HTMLDivElement | null = container.querySelector(`div:nth-child(${element.index + 1})`);
+  const div: HTMLDivElement | null = container.querySelector(`div[frame="${element.index}"]`);
 
   div?.appendChild(element.content);
 };
 
 export const extractText = async ({index}: Frame): Promise<ContentText | undefined> => {
-  const svg: SVGGraphicsElement | null = document.querySelector(`div:nth-child(${index + 1}) svg`);
+  const svg: SVGGraphicsElement | null = document.querySelector(`div[frame="${index}"] svg`);
 
   if (!svg) {
     return undefined;

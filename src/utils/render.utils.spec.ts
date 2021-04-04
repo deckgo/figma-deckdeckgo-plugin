@@ -9,7 +9,7 @@ const slideAbout = readFileSync(join(process.cwd(), 'src', 'mocks', 'slide.about
 describe('test text svg manipulation', () => {
   describe('extract text with one tspan child', () => {
     beforeAll(() => {
-      document.body.innerHTML = `<div>${slideCover}</div>`;
+      document.body.innerHTML = `<div frame="0">${slideCover}</div>`;
     });
 
     it('should mock svg', () => {
@@ -28,7 +28,7 @@ describe('test text svg manipulation', () => {
 
   describe('extract text with multiple tspan children', () => {
     beforeAll(() => {
-      document.body.innerHTML = `<div>${slideAbout}</div>`;
+      document.body.innerHTML = `<div frame="0">${slideAbout}</div>`;
     });
 
     it('should mock svg', () => {
