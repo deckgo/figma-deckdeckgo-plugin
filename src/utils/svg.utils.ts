@@ -80,8 +80,9 @@ const initDeckGoDRR = ({text, svg, tspan}: {text: SVGTextElement; svg: SVGGraphi
   return deckGoDrr;
 };
 
-export const renderSvg = ({container, svg}: {container: HTMLDivElement; svg: Uint8Array}) => {
+export const renderSvg = ({container, svg, index}: {container: HTMLDivElement; svg: Uint8Array, index: number}) => {
   const divElement: HTMLDivElement = document.createElement('div');
+  divElement.setAttribute('frame', `${index}`);
   divElement.innerHTML = new TextDecoder().decode(svg);
 
   container.appendChild(divElement);
@@ -89,7 +90,7 @@ export const renderSvg = ({container, svg}: {container: HTMLDivElement; svg: Uin
 
 export const transformCanvas = ({index}: Frame): Promise<SvgToCanvas | undefined> => {
   return new Promise<SvgToCanvas | undefined>((resolve) => {
-    const svg: SVGGraphicsElement | null = document.querySelector(`div:nth-child(${index + 1}) svg`);
+    const svg: SVGGraphicsElement | null = document.querySelector(`div[frame="${index}"] svg`);
 
     if (!svg) {
       resolve(undefined);
