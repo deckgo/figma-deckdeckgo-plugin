@@ -17,7 +17,8 @@ export const closePlugin = (msg: string) => figma.closePlugin(msg);
 
 const userSelectedFrames = () => figma.currentPage.selection?.filter((selected) => selected.type === 'FRAME');
 
-const allFrames = () => figma.root.findAll((node) => node.type === 'FRAME');
+const allFrames = (): (PageNode | SceneNode)[] =>
+  figma.root.findAll((node: PageNode | SceneNode) => node.type === 'FRAME' && node.parent?.type === 'PAGE');
 
 export const start = async () => {
   try {
@@ -45,7 +46,11 @@ export const start = async () => {
 
 const findFrameFontFamily = (frameNode: FrameNode): string[] => {
   const textNodes: TextNode[] | undefined = frameNode.children?.filter((node: SceneNode) => node.type === 'TEXT') as TextNode[] | undefined;
-  return [...new Set(textNodes?.map((node: TextNode) => (node.fontName as FontName)?.family).filter((family: string | undefined) => family !== undefined))];
+  return [
+    ...new Set(
+      textNodes?.map((node: TextNode) => (node.fontName as FontName)?.family).filter((family: string | undefined) => family !== undefined)
+    )
+  ];
 };
 
 const findFramesFontFamilies = (frameNodes: FrameNode[]) => {
