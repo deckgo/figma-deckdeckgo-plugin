@@ -4,6 +4,8 @@ Export [Figma] frames to [DeckDeckGo] slides.
 
 <div align="center">
     <img src="figma/cover.png" alt="Figma to DeckDeckGo" height="100%">
+
+    ![Plugin]
 </div>
 
 ## Table of contents
@@ -22,7 +24,7 @@ This plugin, once installed in [Figma], can be used to export frames to [DeckDec
 
 ## How to?
 
-- Use the plugin to export your frames
+- Use the [plugin] to export your frames
 - Download the resulting asset as zip file
 - Go to the DeckDeckGo [editor](https://app.deckdeckgo.com)
 - Import the data to create a new deck
@@ -54,3 +56,4 @@ This plugin is released under the [GNU Affero General Public License](GNU-AGPL-3
 
 [deckdeckgo]: https://deckdeckgo.com
 [figma]: https://figma.com
+[plugin]: https://www.figma.com/community/plugin/950777256486678678/Figma-to-DeckDeckGo
