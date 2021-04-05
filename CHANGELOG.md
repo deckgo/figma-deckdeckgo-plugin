@@ -2,7 +2,7 @@
 
 ### Features
 
-- font size follows DeckDeckGo core ratio
+- font size ratio improved
 
 ### Fix
 
