@@ -49,7 +49,6 @@ const initDeckGoDRR = ({text, svg, tspan}: {text: SVGTextElement; svg: SVGGraphi
     return deckGoDrr;
   }
 
-  const svgBbox: DOMRect = svg.getBBox();
   const textBbox: DOMRect = (tspan || text).getBBox();
 
   const translate: RegExpExecArray | null = /translate\((.*?)\)/g.exec(text.getAttribute('transform') || '');
@@ -68,8 +67,10 @@ const initDeckGoDRR = ({text, svg, tspan}: {text: SVGTextElement; svg: SVGGraphi
     }
   }
 
-  const targetY: number = (100 * y) / (svgBbox.height - svgBbox.y);
-  const targetX: number = (100 * x) / (svgBbox.width - svgBbox.x);
+  const {width, height} = svgSize(svg);
+
+  const targetY: number = (100 * y) / height;
+  const targetX: number = (100 * x) / width;
 
   deckGoDrr.style.setProperty('--top', `${targetY}%`);
   deckGoDrr.style.setProperty('--left', `${targetX}%`);

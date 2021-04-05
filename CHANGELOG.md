@@ -1,5 +1,9 @@
 # 1.0.4 (2021-04-05)
 
+### Features
+
+- improve positioning of extracted texts
+
 ### Fix
 
 - default fill color (such as "black")
