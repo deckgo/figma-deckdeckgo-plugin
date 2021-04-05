@@ -1,5 +1,7 @@
 // SVG Properties and CSS: https://css-tricks.com/svg-properties-and-css/#shared-properties
 
+const baseFontSize: number = 24;
+
 export const applyStyle = ({section, text, svgWidth}: {section: HTMLElement; text: SVGTextElement; svgWidth: number}) => {
   section.style.whiteSpace = text.style.whiteSpace;
 
@@ -17,7 +19,7 @@ export const applyStyle = ({section, text, svgWidth}: {section: HTMLElement; tex
   // See initFontSize in core
   const ratioFontSize: number = svgWidth / 16 * 9 / 576;
 
-  const fontSize: number = parseInt(text.getAttribute('font-size') || '') / (16 * ratioFontSize);
+  const fontSize: number = parseInt(text.getAttribute('font-size') || '') / (baseFontSize * ratioFontSize);
   section.style.fontSize = !isNaN(fontSize) ? `${fontSize}em` : '';
 
   section.style.direction = text.getAttribute('direction') || '';
