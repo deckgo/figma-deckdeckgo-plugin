@@ -1,3 +1,9 @@
+# 1.0.4 (2021-04-05)
+
+### Fix
+
+- default fill color (such as "black")
+
 # 1.0.3 (2021-04-05)
 
 ### Features
