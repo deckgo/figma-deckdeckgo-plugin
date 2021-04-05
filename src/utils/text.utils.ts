@@ -29,10 +29,13 @@ export const applyStyle = ({section, text, svgWidth}: {section: HTMLElement; tex
   section.style.wordSpacing = text.getAttribute('word-spacing') || '';
   section.style.writingMode = text.getAttribute('writing-mode') || '';
 
-  section.style.color = text.getAttribute('fill') || '';
+  // We want to avoid a textual color (such as "black") and always get the rgb values
+  const color: string = text.getAttribute('fill') ? window.getComputedStyle(text)?.fill : '';
+  section.style.color = color || '';
+
   section.style.opacity = text.getAttribute('fill-opacity') || '';
 
-  section.style.webkitTextStrokeColor = text.getAttribute('stroke-width') || '';
+  section.style.webkitTextStrokeWidth = text.getAttribute('stroke-width') || '';
   section.style.webkitTextStrokeColor = text.getAttribute('stroke') || '';
 };
 
