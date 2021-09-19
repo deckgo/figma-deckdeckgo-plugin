@@ -1,3 +1,9 @@
+# 2.0.0 (2021-XX-YY)
+
+### Features
+
+- new export format for offline support
+
 # 1.0.4 (2021-04-05)
 
 ### Features

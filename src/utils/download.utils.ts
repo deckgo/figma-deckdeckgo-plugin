@@ -1,14 +1,8 @@
 import JSZip from 'jszip';
 
-interface OutputFrame {
-  element: HTMLElement;
-  filename: string;
-}
+import {FileImportData, UserAsset} from '@deckdeckgo/editor';
 
-interface OutputFrameGroup {
-  canvas: OutputFrame;
-  aside: OutputFrame | undefined;
-}
+import {importData, userAssets} from './meta.utils';
 
 export const downloadFrames = async () => {
   const container: HTMLDivElement | null = document.querySelector('div.container');
@@ -29,7 +23,10 @@ export const downloadFrames = async () => {
     return;
   }
 
-  const blob: Blob = await zip(svgList);
+  const data: FileImportData = importData(svgList);
+  const assets: UserAsset[] = await Promise.all(userAssets(svgList));
+
+  const blob: Blob = await zip({assets, data});
 
   download(blob);
 };
@@ -60,68 +57,39 @@ const prepare = (frames: HTMLDivElement[]): OutputFrameGroup[] => {
   return svgList;
 };
 
-const zip = async (svgList: OutputFrameGroup[]): Promise<Blob> => {
+const zip = async ({assets, data}: {assets: UserAsset[]; data: FileImportData}): Promise<Blob> => {
   const zip = new JSZip();
 
-  const addImageZip = async ({dataUrl, filename}: {dataUrl: string; filename: string}) => {
-    const blob: Blob = await (await fetch(dataUrl)).blob();
-
-    zip.file(filename, blob, {
+  const addImageZip = async ({key, blob}: UserAsset) => {
+    zip.file(key, blob, {
       base64: true
     });
   };
 
-  const addHtmlZip = ({data, filename}: {data: string; filename: string}) => {
-    const blob: Blob = new Blob([data], {type: 'text/html'});
+  const addDeckMetaZip = (deck: FileImportData) => {
+    const blob: Blob = new Blob([JSON.stringify(deck)], {type: 'application/json'});
 
-    zip.file(filename, blob, {
+    zip.file('deck.json', blob, {
       base64: true
     });
   };
 
-  const addMetaZip = (meta: Metadata) => {
-    const blob: Blob = new Blob([JSON.stringify(meta)], {type: 'application/json'});
+  const addAssetMetaZip = (assets: UserAsset[]) => {
+    const blob: Blob = new Blob([JSON.stringify(assets.map(({key}) => ({key})))], {type: 'application/json'});
 
-    zip.file('meta.json', blob, {
+    zip.file('assets.json', blob, {
       base64: true
     });
   };
 
-  const promises: Promise<void>[] = svgList.map(async ({canvas, aside}: OutputFrameGroup) => {
-    await addImageZip({
-      dataUrl: (canvas.element as HTMLCanvasElement).toDataURL('image/webp'),
-      filename: canvas.filename
-    });
+  const imagePromises: Promise<void>[] = assets.map((userAsset: UserAsset) => addImageZip(userAsset));
+  await Promise.all(imagePromises);
 
-    if (aside) {
-      addHtmlZip({
-        data: aside.element.innerHTML,
-        filename: aside.filename
-      });
-    }
-  });
+  addDeckMetaZip(data);
 
-  await Promise.all(promises);
-
-  addMetaZip(meta(svgList));
+  addAssetMetaZip(assets);
 
   return zip.generateAsync({type: 'blob'});
-};
-
-const meta = (svgList: OutputFrameGroup[]): Metadata => {
-  const fonts: FontsComponent | null = document.querySelector('deckgo-fonts');
-
-  const slides: MetadataSlide[] = svgList.map(({canvas, aside}: OutputFrameGroup) => {
-    return {
-      background: canvas.filename,
-      ...(aside && {text: aside.filename})
-    };
-  });
-
-  return {
-    slides,
-    ...((fonts?.value && fonts?.value !== 'Default') && {fontFamily: fonts.value})
-  }
 };
 
 const download = (blob) => {
@@ -129,7 +97,7 @@ const download = (blob) => {
 
   const link = document.createElement('a');
   link.href = blobURL;
-  link.download = `deckdeckgo.zip`;
+  link.download = `deckdeckgo.ddg`;
   link.click();
 
   window.URL.revokeObjectURL(blobURL);
