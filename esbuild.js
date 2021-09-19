@@ -62,6 +62,6 @@ const buildWebComponents = (entryPoints) =>
 
   await writeFile(
     'dist/ui.html',
-    `<script>${script.outputFiles[0].text}</script><script type="module">${componentsScript}</script>${minify(html, minifyOptions)}`
+    `<script>${script.outputFiles[0].text}</script><script type="module">${componentsScript}</script>${await minify(html, minifyOptions)}`
   );
 })();
