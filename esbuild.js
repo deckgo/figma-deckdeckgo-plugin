@@ -37,7 +37,7 @@ const buildWebComponents = (entryPoints) =>
     bundle: true,
     minify: true,
     write: false,
-    target: ['chrome58', 'firefox57', 'safari11', 'edge16']
+    target: ['chrome58', 'firefox57', 'safari11', 'edge18']
   });
 
   const componentsScript = buildWebComponents([
