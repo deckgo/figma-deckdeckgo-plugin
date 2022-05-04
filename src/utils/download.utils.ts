@@ -66,10 +66,10 @@ const zip = async ({assets, data}: {assets: UserAsset[]; data: FileImportData}):
     });
   };
 
-  const addDeckMetaZip = (deck: FileImportData) => {
-    const blob: Blob = new Blob([JSON.stringify(deck)], {type: 'application/json'});
+  const addDataMetaZip = (data: FileImportData) => {
+    const blob: Blob = new Blob([JSON.stringify(data)], {type: 'application/json'});
 
-    zip.file('deck.json', blob, {
+    zip.file('data.json', blob, {
       base64: true
     });
   };
@@ -85,7 +85,7 @@ const zip = async ({assets, data}: {assets: UserAsset[]; data: FileImportData}):
   const imagePromises: Promise<void>[] = assets.map((userAsset: UserAsset) => addImageZip(userAsset));
   await Promise.all(imagePromises);
 
-  addDeckMetaZip(data);
+  addDataMetaZip(data);
 
   addAssetMetaZip(assets);
 
