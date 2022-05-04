@@ -1,4 +1,14 @@
-# 2.0.0 (2021-XX-YY)
+# 2.1.0 (2021-10-21)
+
+### Features
+
+- update export file entries format
+
+### Build
+
+- bump dependencies
+
+# 2.0.0 (2021-10-21)
 
 ### Features
 
